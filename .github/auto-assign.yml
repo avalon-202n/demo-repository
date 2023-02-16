@@ -1,3 +1,5 @@
+## See https://github.com/wow-actions/auto-assign for more details
+
 # Set to true to add reviewers to PRs
 addReviewers: true
 
@@ -7,7 +9,8 @@ addAssignees: author
 # A list of reviewers to be added to PRs (GitHub user  name)
 reviewers:
   - ndy2
-  - octocat
+  - YOONSUNGHYEON
+  - DSeung001
 
 # A number of reviewers added to the PR
 # Set 0 to add all the reviewers (default: 0)
@@ -16,7 +19,8 @@ numberOfReviewers: 1
 # A list of assignees, overrides reviewers if set
 assignees:
   - ndy2
-  - octocat
+  - YOONSUNGHYEON
+  - DSeung001
 
 # A number of assignees to add to the PRs
 # Set to 0 to add all of the assignees.

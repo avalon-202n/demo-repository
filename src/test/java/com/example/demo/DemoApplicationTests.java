@@ -10,4 +10,8 @@ class DemoApplicationTests {
 	void contextLoads() {
 	}
 
+	@Test
+	void fail(){
+		throw new RuntimeException("test result publish 실패 확인");
+	}
 }

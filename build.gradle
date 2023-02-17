@@ -3,11 +3,19 @@ plugins {
 	id 'org.springframework.boot' version '3.0.2'
 	id 'io.spring.dependency-management' version '1.1.0'
 	id 'jacoco'
+	id 'checkstyle'
+    id 'org.ec4j.editorconfig' version '0.0.3'
 }
 
 group = 'com.example'
 version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
+
+checkstyle {
+	maxWarnings = 0
+	configFile = rootProject.file("checkstyle/naver-checkstyle-rules.xml")
+	toolVersion = "10.2"
+}
 
 repositories {
 	mavenCentral()
@@ -23,6 +31,11 @@ tasks.named('test') {
 	finalizedBy 'jacocoTestReport'
 }
 
+task checkstyle {
+	dependsOn tasks.withType(Checkstyle)
+    dependsOn editorconfigCheck
+}
+
 jacocoTestReport {
 	reports {
 		html.enabled(true)
@@ -32,3 +45,10 @@ jacocoTestReport {
 
 	dependsOn test
 }
+
+
+editorconfig {
+    excludes = ["${buildDir}"]
+}
+
+check.dependsOn editorconfigCheck

@@ -1,8 +1,3 @@
-# Welcome to your organization's demo respository
-This code repository (or "repo") is designed to demonstrate the best GitHub has to offer with the least amount of noise.
+# Welcome to avalon-202n's demo respository
 
-The repo includes an `index.html` file (so it can render a web page), two GitHub Actions workflows, and a CSS stylesheet dependency.
-
-auto-assign test
-
-auto-assign test 3
+github action/ build 등을 실험하는 공간입니다.

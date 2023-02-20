@@ -2,17 +2,12 @@ name: spring ci
 
 on:
   pull_request:
-    branches:
-      - main
+    branches: main
   workflow_dispatch:
-
-permissions:
-  contents: read
-  checks: write
-  pull-requests: write
 
 jobs:
   static-analysis:
+    name: Static analysis
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -30,6 +25,7 @@ jobs:
 
   test:
     runs-on: ubuntu-latest
+    name: Testing on JDK 17
     steps:
       - uses: actions/checkout@v2
       - name: Set up JDK

@@ -1,9 +1,9 @@
 plugins {
-	id 'java'
-	id 'org.springframework.boot' version '3.0.2'
-	id 'io.spring.dependency-management' version '1.1.0'
-	id 'jacoco'
-	id 'checkstyle'
+    id 'java'
+    id 'org.springframework.boot' version '3.0.2'
+    id 'io.spring.dependency-management' version '1.1.0'
+    id 'jacoco'
+    id 'checkstyle'
     id 'org.ec4j.editorconfig' version '0.0.3'
 }
 
@@ -12,38 +12,42 @@ version = '0.0.1-SNAPSHOT'
 sourceCompatibility = '17'
 
 checkstyle {
-	maxWarnings = 0
-	configFile = rootProject.file("checkstyle/naver-checkstyle-rules.xml")
-	toolVersion = "10.2"
+    maxWarnings = 0
+    toolVersion = "10.2"
 }
 
 repositories {
-	mavenCentral()
+    mavenCentral()
 }
 
 dependencies {
-	implementation 'org.springframework.boot:spring-boot-starter'
-	testImplementation 'org.springframework.boot:spring-boot-starter-test'
+    implementation 'org.springframework.boot:spring-boot-starter-web'
+    implementation 'org.springframework.boot:spring-boot-starter-data-jpa'
+    implementation 'com.google.cloud:spring-cloud-gcp-starter:4.1.1'
+    implementation 'com.google.cloud:spring-cloud-gcp-starter-sql-mysql:4.1.1'
+    compileOnly 'org.projectlombok:lombok'
+    annotationProcessor 'org.projectlombok:lombok'
+    testImplementation 'org.springframework.boot:spring-boot-starter-test'
 }
 
 tasks.named('test') {
-	useJUnitPlatform()
-	finalizedBy 'jacocoTestReport'
+    useJUnitPlatform()
+    finalizedBy 'jacocoTestReport'
 }
 
 task checkstyle {
-	dependsOn tasks.withType(Checkstyle)
+    dependsOn tasks.withType(Checkstyle)
     dependsOn editorconfigCheck
 }
 
 jacocoTestReport {
-	reports {
-		html.enabled(true)
-		xml.enabled(false)
-		csv.enabled(false)
-	}
+    reports {
+        html.enabled(true)
+        xml.enabled(false)
+        csv.enabled(false)
+    }
 
-	dependsOn test
+    dependsOn test
 }
 
 

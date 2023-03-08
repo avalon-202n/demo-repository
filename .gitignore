@@ -35,3 +35,6 @@ out/
 
 ### VS Code ###
 .vscode/
+
+### key.json
+src/main/resources/key.json

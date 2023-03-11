@@ -69,6 +69,10 @@ jobs:
             distribution: 'oracle'
             cache: 'gradle'
 
+        - uses: oNaiPs/secrets-to-env-action@v1
+          with:
+            secrets: ${{ toJSON(secrets) }}
+
         - name: Execute build
           uses: gradle/gradle-build-action@v2.2.1
           with:
@@ -84,11 +88,10 @@ jobs:
         - name: Configure Docker
           run: gcloud auth configure-docker --quiet
 
-        - name: Build Docker image
-          run: docker build . -t $IMAGE_NAME
-
-        - name: Push Docker image
-          run: docker push $IMAGE_NAME
+        - name: Execute Jib - Docker build & Push
+          uses: gradle/gradle-build-action@v2.2.1
+          with:
+            arguments: jib
 
         - name: Deploy Docker image
           run: gcloud run deploy ${{ secrets.GCP_PROJECT_ID }} --image $IMAGE_NAME --region us-central1 --platform managed

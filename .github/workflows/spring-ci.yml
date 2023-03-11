@@ -53,6 +53,7 @@ jobs:
 
     build-and-deploy:
       needs: test
+      runs-on: ubuntu-latest
       name: Build by gradle & Deploy on google cloudrun
       env:
         IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}

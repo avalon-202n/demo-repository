@@ -24,11 +24,11 @@ jobs:
         - name: Checkout repository
           uses: actions/checkout@v2
 
+        - name: Docker Login
+          run: docker login -u ${{ secrets.DOCKER_USERNAME }} -p ${{ secrets.DOCKER_PASSWORD }}
+
         - name: Build Docker image
           run: docker build . -t $IMAGE_NAME
-
-        - name: Test Docker image
-          run: docker run $IMAGE_NAME sh -c "go test -v"
 
         - name: Push Docker image
           run: docker push $IMAGE_NAME

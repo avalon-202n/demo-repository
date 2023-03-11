@@ -51,7 +51,7 @@ jobs:
         with:
           files: "build/test-results/**/*.xml"
 
-    build-and-deploy:
+  build-and-deploy:
       needs: test
       runs-on: ubuntu-latest
       name: Build by gradle & Deploy on google cloudrun

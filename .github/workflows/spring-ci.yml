@@ -51,8 +51,9 @@ jobs:
         with:
           files: "build/test-results/**/*.xml"
 
-    build:
+  build:
       needs: test
+      runs-on: ubuntu-latest
       name: Build by gradle
       steps:
         - uses: actions/checkout@v2
@@ -68,7 +69,7 @@ jobs:
           with:
             arguments: build --exclude-task test
 
-    deploy:
+  deploy:
       needs: build
       runs-on: ubuntu-latest
       name: Deploy on google cloudrun

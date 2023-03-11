@@ -52,9 +52,12 @@ jobs:
           files: "build/test-results/**/*.xml"
 
   build-and-deploy:
-      needs: test
+      needs: 
+        - static-analysis
+        - test
       runs-on: ubuntu-latest
       name: Build by gradle & Deploy on google cloudrun
+      environment: demo-env
       env:
         IMAGE_NAME: gcr.io/${{ secrets.GCP_PROJECT_ID }}/${{ secrets.GCP_APP_NAME }}
       steps:
